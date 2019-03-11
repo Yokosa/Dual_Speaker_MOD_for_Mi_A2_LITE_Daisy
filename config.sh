@@ -56,10 +56,22 @@ print_modname() {
 # List all directories you want to directly replace in the system
 # Check the documentations for more info about how Magic Mount works, and why you need this
 
-###########################################################################
-# Make sure the Path is correct
+# This is an example
 REPLACE="
-/system/vendor/etc/mixer_paths_mtp.xml
+/system/app/Youtube
+/system/priv-app/SystemUI
+/system/priv-app/Settings
+/system/framework
+"
+
+# Construct your own list here, it will override the example above
+# !DO NOT! remove this if you don't need to replace anything, leave it empty as it is now
+REPLACE="
+/system/vendor/etc/mixer_paths_vince_global.xml 
+/system/vendor/etc/mixer_paths_vince.xml
+/system/vendor/etc/mixer_paths_mtp.xml  
+/system/vendor/etc/mixer_paths_mtp_global.xml  
+/system/vendor/etc/mixer_paths.xml
 "
 
 ##########################################################################################
@@ -70,16 +82,25 @@ set_permissions() {
   # Only some special files require specific permissions
   # The default permissions should be good enough for most cases
 
+  # Here are some examples for the set_perm functions:
+
+  # set_perm_recursive  <dirname>                <owner> <group> <dirpermission> <filepermission> <contexts> (default: u:object_r:system_file:s0)
+  # set_perm_recursive  $MODPATH/system/lib       0       0       0755            0644
+
+  # set_perm  <filename>                         <owner> <group> <permission> <contexts> (default: u:object_r:system_file:s0)
+  # set_perm  $MODPATH/system/bin/app_process32   0       2000    0755         u:object_r:zygote_exec:s0
+  # set_perm  $MODPATH/system/bin/dex2oat         0       2000    0755         u:object_r:dex2oat_exec:s0
+  # set_perm  $MODPATH/system/lib/libart.so       0       0       0644
+
   # The following is default permissions, DO NOT remove
   set_perm_recursive  $MODPATH  0  0  0755  0644
-  
-  # Make sure the Path is correct
-  # set_perm  $MODPATH/
-  # then you place the path
-  # set_perm  $MODPATH/system/etc/mixer_paths.xml
-  # the permissions are --- rw- r-- r-- which is 0644
-  set_perm  $MODPATH/system//vendor/etc/mixer_paths_mtp.xml       0       0       0644
- }
+  set_perm  $MODPATH/system/vendor/etc/mixer_paths_vince_global.xml   	0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/mixer_paths_vince.xml      		0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/mixer_paths_mtp_global.xml      0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/mixer_paths_mtp.xml       		0       0       0644
+  set_perm  $MODPATH/system/vendor/etc/mixer_paths.xml      			0       0       0644
+
+}
 
 ##########################################################################################
 # Custom Functions
