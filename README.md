@@ -1,4 +1,4 @@
-<h1>Dual Speaker Mode for Xiaomi Mi A2 LITE</h1>
+<h1>Dual Speaker Mod for Xiaomi Mi A2 LITE</h1>
 
 <h2>About</h2>
 
