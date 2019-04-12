@@ -8,7 +8,7 @@ Coming from that concept, this mod will allow you to use your earpiece as second
 
 <h2>Perfomance</h2>
 
-Tested on stock 8.1.0, 9.0.1 & working without any problem or distortion in sound <br>
+Tested on stock 8.1.0, 9.0 & working without any problem or distortion in sound <br>
 <br>
 Call sound is not affected by this mod as it only enables the earpiece while playing media ( video, audio, ringtone, etc )
 
